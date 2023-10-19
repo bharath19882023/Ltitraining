@@ -1,0 +1,46 @@
+import java.io.*;
+
+class ArrayFrequency {
+    private int[] array;
+    private int size;
+    private int currentIndex = 0;
+
+    public ArrayFrequency(int size) {
+        this.size = size;
+        array = new int[size];
+    }
+
+    public void insertElement(int element) {
+        if (size > 0 && currentIndex < array.length) {
+            array[currentIndex] = element;
+            currentIndex++;
+            size--;
+            System.out.println("Element " + element + " inserted successfully.");
+        } else {
+            System.out.println("Array is full, cannot insert more elements.");
+        }
+    }
+
+    public int calculateFrequency(int element) {
+        int frequency = 0;
+        for (int i = 0; i < currentIndex; i++) {
+            if (array[i] == element) {
+                frequency++;
+            }
+        }
+        return frequency;
+    }
+
+    public static void main(String args[]) throws Exception {
+        ArrayFrequency arrayFrequency = new ArrayFrequency(5);
+        arrayFrequency.insertElement(1);
+        arrayFrequency.insertElement(2);
+        arrayFrequency.insertElement(3);
+        arrayFrequency.insertElement(4);
+        arrayFrequency.insertElement(5);
+
+        int elementToFind = 2;
+        int frequency = arrayFrequency.calculateFrequency(elementToFind);
+        System.out.println("Frequency of element " + elementToFind + ": " + frequency);
+    }
+}
